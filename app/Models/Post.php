@@ -11,6 +11,9 @@ class Post extends Model
     //Nome da tabela no DB
     protected $table = 'post';
 
+    //para que a edição funcione corretamente
+    protected $guarded = [];
+
     //chamando o models User para vincular o ID do usuário as publicações
     //também será preciso criar uma função parecida no model User
     public function user(){

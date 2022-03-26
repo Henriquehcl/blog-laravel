@@ -8,3 +8,6 @@ views de login/sessions
 php artisan jetstream:install livewire 
 após instalar é preciso rodar o 
 npm install && npm run dev
+
+
+implanatar File::delete() para apagar as imagens

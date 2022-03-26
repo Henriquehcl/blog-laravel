@@ -25,7 +25,7 @@
                     <td>Sem nada, precisa implementar</td>
                     <td>{{$post->public}}</td>
                     <td>
-                        <a href="#" class="btn btn-info edit-btn"><ion-icon name="create-outline"></ion-icon>Editar</a>
+                        <a href="/post/edit/{{$post->id}}" class="btn btn-info edit-btn"><ion-icon name="create-outline"></ion-icon>Editar</a>
                         <!--<form action="/post/{{$post->id}}" method="POST">
 
                             @csrf

@@ -76,7 +76,7 @@ class BlogController extends Controller
 
             $extension = $requestImage->extension();//extensão da imagem
 
-            $imageName = md5($requestImage->getClientOriginalName().strtotime("now").".".$extension);
+            $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")).".".$extension;
 
             //saving
             $requestImage->move(public_path('img/posts'), $imageName);
@@ -123,6 +123,39 @@ class BlogController extends Controller
         return view('admin.dashboard', ['posts'=>$posts]);
     }
     */
+
+    public function edit($id){
+
+      $post = Post::findOrFail($id);
+
+      return view('admin.edit', ['post'=>$post]);
+    }
+
+    public function update(Request $request){
+
+        $data = $request->all();
+
+        //upload image
+        if($request->hasfile('image') && $request->file('image')->isValid()){
+
+            $requestImage = $request->image;
+
+            $extension = $requestImage->extension();//extensão da imagem
+
+            $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")).".".$extension;
+
+            //saving
+            $requestImage->move(public_path('img/posts'), $imageName);
+
+            $data['image'] = $imageName;
+        }
+
+
+        Post::findOrFail($request->id)->update($data);
+
+        return redirect('/administration')->with('msg','Postagem editada com sucesso!');
+    }
+
     public function destroy($id){
 
 

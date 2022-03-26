@@ -27,6 +27,9 @@ Route::get('/contato', [BlogController::class, 'contact']);//contact.blade.php
 Route::post('/saving',[BlogController::class, 'storePost']);
 
 Route::get('/create_post', [BlogController::class, 'createPost'])->middleware('auth'); //admin/create.blade.php
+Route::get('/post/edit/{id}', [BlogController::class, 'edit']);
+Route::put('/update/{id}', [BlogController::class, 'update']);
+//Route::put('/update/{id}', 'BlogController@update');
 
 //Route::delete('/post/{id}', [BlogController::class, 'destroy'])->name('post.destroy');
 
