@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 //model Post
 use App\Models\Post;
 
+//model User
+use App\Models\User;
+
 class BlogController extends Controller
 {
     public function index(){
@@ -22,6 +25,10 @@ class BlogController extends Controller
             $posts = Post::all();
         }
 
+        //dados do usuário que fez a publicação
+
+
+
         return view('index',['posts'=>$posts, 'search'=>$search]);
     }
 
@@ -29,7 +36,11 @@ class BlogController extends Controller
 
         $post= Post::findOrFail($id);
 
-        return view('post',['post'=>$post]);
+        //dados do usuário que fez a publicação
+        $postOwner = User::where('id', $post->user_id)->first()->toArray();
+        //$postOwner = "teste";
+
+        return view('post',['post'=>$post, 'postOwner'=>$postOwner]);
 
     }
 
@@ -73,6 +84,11 @@ class BlogController extends Controller
             $post->image = $imageName;
         }
 
+        //capturando o id do usuário logado
+        $user = auth()->user();
+        //adicionando na tabela
+        $post->user_id = $user->id;
+
         $post->save();
 
         return redirect('/')->with('msg','Post criado com sucesso!');//flash message ->with('msg','Post criado com sucesso!')
@@ -84,8 +100,50 @@ class BlogController extends Controller
     }
 
     public function admin(){
+/*
         $admin = 'Administação';
 
         return view('admin.admin', [ 'pagina'=>$admin]);
+        */
+                //verificando o usuário logado
+        $user = auth()->user();
+
+        $posts = $user->posts;
+
+        return view('admin.dashboard', ['posts'=>$posts]);
     }
+    /*
+    public function dashboard(){
+
+        //verificando o usuário logado
+        $user = auth()->user();
+
+        $post = $user->posts;
+
+        return view('admin.dashboard', ['posts'=>$posts]);
+    }
+    */
+    public function destroy($id){
+
+
+        Post::findOrFail($id)->delete();
+
+        return redirect('/administration')->with('msg','Postagem apagada com sucesso!');
+    }
+
+        /*
+    public function destroy($id)
+    {
+        $posts = auth()->user()->posts;
+        foreach ($posts as $post) {
+            if ($post->id == $id) {
+                Post::findOrFail($id)->delete();
+                FacadesFile::delete(public_path('img\\posts\\') . $post->image);
+                return redirect('/administration')->with('msg', 'Evento excluído com sucesso!');
+            }
+        }
+
+        return redirect('/administration')->with('msg', 'Sem permissão para exclusão desse evento!');
+    }
+        */
 }

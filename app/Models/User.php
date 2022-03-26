@@ -58,4 +58,12 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+
+    // criando o vinculo com o model Post
+    //para vincular o usuário a publicação
+    public function posts(){
+
+        return $this->hasMany('App\Models\Post');
+    }
 }

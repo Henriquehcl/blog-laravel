@@ -18,9 +18,9 @@
     <div id="cards-container" class="row">
         @foreach($posts as $post)
         <div class="card-body">
-            <h5 class="card-title">{{$post->title}}</h5>
-            <h5 class="card-title">{{$post->description}}</h5>
-            <h5 class="card-title">{{$post->public}}</h5>
+            <h5 class="card-title">Título: {{$post->title}}</h5>
+            <h5 class="card-title">Descrição: {{$post->description}}</h5>
+            <h5 class="card-title">Publicado: {{$post->public}}</h5>
             <img src="/img/posts/{{$post->image}}" alt="{{$post->title}}">
             <a href="/post/{{$post->id}}" class="btn btn-primary">Visualizar</a>
         </div>

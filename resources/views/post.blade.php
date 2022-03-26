@@ -15,6 +15,7 @@
         <div class="col-md-12" id="description-container">
             <p class="post-description">{{$post->description}}</p>
             <p class="post-description">{{$post->public}} </p>
+            <p class="post-description">{{$postOwner['name']}} </p>
         </div>
     </div>
 </div>

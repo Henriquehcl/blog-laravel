@@ -51,6 +51,19 @@ img{
     padding: 7px;
 }
 
+/*Dashboard - administração*/
+.dashboard-title-container{
+    margin-bottom: 30px;
+    margin-top: 30xp;
+}
+
+.dashboard-event-container th{
+    width: 25%;
+
+}
+.dashboard-event-container form{
+    display: inline-block;
+}
 /* Footer */
 
 footer{

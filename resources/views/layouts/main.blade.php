@@ -31,7 +31,7 @@
                     </li>
                     @auth
                     <li class="nav-item">
-                        <a href="/dashboard" class="nav-link">Administração</a>
+                        <a href="/administration" class="nav-link">Administração</a>
                     </li>
                     <li class="nav-item">
                         <a href="/register" class="nav-link">Cadastrar</a>
