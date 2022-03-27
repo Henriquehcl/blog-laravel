@@ -10,6 +10,10 @@ use App\Models\Post;
 //model User
 use App\Models\User;
 
+//para deletar as imagens na pasta /public/img/posts
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+
 class BlogController extends Controller
 {
     public function index(){
@@ -155,28 +159,35 @@ class BlogController extends Controller
 
         return redirect('/administration')->with('msg','Postagem editada com sucesso!');
     }
-
+/*
     public function destroy($id){
 
 
         Post::findOrFail($id)->delete();
 
         return redirect('/administration')->with('msg','Postagem apagada com sucesso!');
-    }
+    }*/
 
-        /*
+
     public function destroy($id)
     {
         $posts = auth()->user()->posts;
         foreach ($posts as $post) {
             if ($post->id == $id) {
                 Post::findOrFail($id)->delete();
-                FacadesFile::delete(public_path('img\\posts\\') . $post->image);
+                //FacadesFile::delete(public_path('img\\posts\\') . $post->image);
+                File::delete(public_path('img/posts/') . $post->image);                //Storage::delete(public_path('img\\posts\\') . $post->image);
+                //Storage::delete(public_path('img/posts/ImagemTeste.jpg'));
                 return redirect('/administration')->with('msg', 'Evento excluído com sucesso!');
             }
         }
 
         return redirect('/administration')->with('msg', 'Sem permissão para exclusão desse evento!');
     }
-        */
+
+
+    public function redirectToAdministration(){
+
+        return redirect('/administration');
+    }
 }

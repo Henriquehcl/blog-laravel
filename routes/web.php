@@ -33,7 +33,7 @@ Route::put('/update/{id}', [BlogController::class, 'update']);
 
 //Route::delete('/post/{id}', [BlogController::class, 'destroy'])->name('post.destroy');
 
-//Route::get('/dashboard', [BlogController::class, 'dashboard'])->middleware('auth');
+Route::get('/dashboard', [BlogController::class, 'redirectToAdministration'])->middleware('auth');
 Route::get('/administration', [BlogController::class, 'admin'])->middleware('auth');//admin/admin.blade.php
 /*
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
