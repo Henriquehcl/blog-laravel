@@ -14,24 +14,40 @@
     @else
     <h3>Últimas Postagens</h3>
     @endif
-    <h4>Posts</h4>
-    <div id="cards-container" class="row">
-        @foreach($posts as $post)
-        <div class="card-body">
-            <h5 class="card-title">Título: {{$post->title}}</h5>
-            <h5 class="card-title">Descrição: {{$post->description}}</h5>
-            <h5 class="card-title">Publicado: {{$post->public}}</h5>
-            <img src="/img/posts/{{$post->image}}" alt="{{$post->title}}">
-            <a href="/post/{{$post->id}}" class="btn btn-primary">Visualizar</a>
-        </div>
 
-        @endforeach
+</div>
+
+        <!-- Main Content-->
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <!-- Post preview-->
+                    @foreach($posts as $post)
+                    <div class="post-preview">
+                        <a href="/post/{{$post->id}}">
+                            <h2 class="post-title">{{$post->title}}</h2>
+                            <h3 class="post-subtitle">Problems look mighty small from 150 miles up</h3>
+                            <img id="img-post" src="/img/posts/{{$post->image}}" alt="{{$post->title}}">
+                        </a>
+                        <p class="post-meta">
+                            Posted by
+                            <a href="#!">Start Bootstrap</a>
+                            on September 24, 2022
+                        </p>
+                    </div>
+                    <!-- Divider-->
+                    <hr class="my-4" />
+                    @endforeach
         @if(count($posts) == 0 && $search)
             <p> Não foi encontrada nenhuma publicação.</p> <a href="/">Ver todos</a>
         @elseif(count($posts) == 0)
             <p> Não foi encontrada nenhuma publicação</p>
         @endif
-    </div>
-</div>
+                     <!-- Pager-->
+                    <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div>
+                </div>
+            </div>
+        </div>
+
 
 @endsection

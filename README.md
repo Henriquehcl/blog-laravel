@@ -11,3 +11,6 @@ npm install && npm run dev
 
 
 implanatar File::delete() para apagar as imagens
+
+template Usada
+https://startbootstrap.com/theme/clean-blog
